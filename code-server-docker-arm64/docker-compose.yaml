@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  code-server:
+    image: code-server:lywy233_arm64
+    container_name: lywy233-codeserver
+    restart: unless-stopped
+    ports:
+      - "18080:8080"
+    volumes:
+      - ./volumes/code-server:/root/.config/code-server # 挂载 code-server 配置目录
+    command: [ "code-server"]
+
+
+# docker buildx build --platform linux/arm64 -t code-server:lywy233_arm64 .
+# docker build -t code-server:lywy233_arm64 .
