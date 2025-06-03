@@ -2,11 +2,14 @@ version: "3.8"
 
 services:
   code-server:
-    image: code-server:lywy233
-    container_name: lywy233-codeserver
+    image: code-server:latest
+    container_name: code-server
     restart: unless-stopped
     ports:
       - "18080:8080"
     volumes:
       - ./volumes/code-server:/root/.config/code-server # 挂载 code-server 配置目录
-    command: [ "code-server"]
+      - ./volumes/code_server-extensions:/data/code_server-extensions # 挂载用于离线安装插件的vsix文件位置
+      - ./volumes/workspace:/workspace # 挂载主要工作目录防止丢失
+      - ./volumes/miniconda3/envs:/root/miniconda3/envs # 挂载conda 非base环境,便于环境的迁移
+    command: ["code-server"]
