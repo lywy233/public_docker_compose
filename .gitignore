@@ -1,0 +1,4 @@
+**/*.vsix
+**/*.yaml
+code-server-docker/volumes/miniconda3/envs/*
+code-server-docker/volumes/workspace/*
